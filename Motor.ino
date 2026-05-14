@@ -111,7 +111,7 @@ void gyroFF(int timeMs, int speed = 55) {
     float correction = (gyroKp * error) + (gyroKi * gyroIntegral) + (gyroKd * derivative);
     correction = clampFloat(correction, -gyroMaxCorrection, gyroMaxCorrection);
 
-    int motorTrim = 4;
+    int motorTrim = 0;
 
     int leftSpeed = speed;
     int rightSpeed = speed + motorTrim;
@@ -136,10 +136,10 @@ void gyroTurn(float angleDelta) {
   updateMPU();
   float targetYaw = currentYaw + angleDelta;
 
-  float kp = 3.8;
+  float kp = 4.4;
   float ki = 0.01;
-  float kd = 0.2;
-  float minSpeed = 45;  // ความเร็วขั้นต่ำ กันหยุดกลางทาง
+  float kd = 0.15;
+  float minSpeed = 55;  // ความเร็วขั้นต่ำ กันหยุดกลางทาง
   float maxSpeed = 70;  // ความเร็วสูงสุดตอนเลี้ยว
 
   unsigned long start = millis();
